@@ -1,0 +1,39 @@
+{% extends 'blog/contenido.html' %}
+{% block title %}Iniciar Sesión - TechBlog{% endblock %}
+{% block content %}
+
+<div class="flex min-h-screen flex-col items-center justify-center px-4 py-10">
+  <div class="w-full max-w-md p-6 space-y-8 bg-white dark:bg-[#101922] rounded-lg shadow-lg border border-gray-200 dark:border-[#283039]">
+    <div class="text-center">
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Inicia Sesión en TechBlog</h1>
+      <p class="mt-2 text-gray-600 dark:text-gray-400">Bienvenido de nuevo</p>
+    </div>
+
+    <form method="POST" class="flex flex-col gap-y-6">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+
+      <div>
+        <label class="text-gray-900 dark:text-white text-base font-medium pb-2 block" for="id_email">Correo Electrónico</label>
+        {{ form.email }}
+      </div>
+
+      <div>
+        <label class="text-gray-900 dark:text-white text-base font-medium pb-2 block" for="id_contraseña">Contraseña</label>
+        {{ form.contraseña }}
+      </div>
+
+      <button type="submit" class="flex w-full items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-background-dark">
+        Iniciar Sesión
+      </button>
+    </form>
+
+    <div class="text-center text-sm text-gray-600 dark:text-gray-400">
+      <p>¿Aún no tienes una cuenta?
+        <a href="{% url 'registrar_usuario' %}" class="font-medium text-primary hover:underline">Regístrate aquí</a>.
+      </p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

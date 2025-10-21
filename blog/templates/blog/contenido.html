@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>{% block title %}TechBlog{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+    <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    {% if messages %}
+  <div class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 space-y-2 w-full max-w-md">
+    {% for message in messages %}
+      <div class="
+        {% if message.tags == 'success' %}bg-green-500{% elif message.tags == 'error' %}bg-red-500{% else %}bg-gray-700{% endif %}
+        text-white px-4 py-3 rounded-lg shadow-lg text-center animate-fade-in                           
+      ">               <!-- Despues de validar si los datos son correctos, busque como hacer que apareza un mensaje de error o por el contrario de inicio de sesion exitoso-->
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+</body>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const alerts = document.querySelectorAll('.animate-fade-in');
+    if (alerts.length) {                                                
+      setTimeout(() => {
+        alerts.forEach(alert => alert.remove());
+      }, 3000);
+    }
+  }); 
+</script>
+<!--Puse esta animacion de js, ya que el mensaje de bienvenido del index no desaparecia. Solo dejaba de aparecer si reiniciabas la página.-->
+
+</html>

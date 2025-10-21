@@ -1,0 +1,54 @@
+{% extends 'blog/contenido.html' %}
+{% block title %}Registro - TechBlog{% endblock %}
+{% block content %}
+
+<div class="flex flex-1 justify-center py-10 px-4 md:px-10 lg:px-40">
+  <div class="max-w-[600px] w-full">
+    <div class="flex flex-col gap-3 text-center mb-8">
+      <h1 class="text-4xl font-black leading-tight tracking-[-0.033em] text-gray-900 dark:text-white">Crea tu cuenta</h1>
+      <p class="text-base font-normal leading-normal text-gray-500 dark:text-[#9dabb9]">
+        Únete a nuestra comunidad de entusiastas de la tecnología.
+      </p>
+    </div>
+
+    <form method="POST" class="space-y-6">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+
+      <div>
+        <label class="text-base font-medium text-gray-800 dark:text-white pb-2 block" for="id_nombre">Nombre</label>
+        {{ form.nombre }}
+      </div>
+
+      <div>
+        <label class="text-base font-medium text-gray-800 dark:text-white pb-2 block" for="id_apellido">Apellido</label>
+        {{ form.apellido }}
+      </div>
+
+      <div>
+        <label class="text-base font-medium text-gray-800 dark:text-white pb-2 block" for="id_email">Correo Electrónico</label>
+        {{ form.email }}
+      </div>
+
+      <div>
+        <label class="text-base font-medium text-gray-800 dark:text-white pb-2 block" for="id_contraseña">Contraseña</label>
+        {{ form.contraseña }}
+      </div>
+
+      <div>
+        <button type="submit" class="w-full flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-4 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-transform duration-200 hover:scale-105">
+          Registrarse
+        </button>
+      </div>
+
+      <div class="text-center">
+        <p class="text-sm text-gray-500 dark:text-[#9dabb9]">
+          ¿Ya tienes cuenta?
+          <a href="{% url 'login_usuario' %}" class="font-medium text-primary hover:underline">Inicia Sesión</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
